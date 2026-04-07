@@ -1,73 +1,84 @@
-# React + TypeScript + Vite
+# Ethnos Web
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Demo visual do jogo de tabuleiro **Ethnos** — implementação local (hotseat) em React + TypeScript + Tailwind CSS v4, sem backend.
 
-Currently, two official plugins are available:
+## Sobre o Jogo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Ethnos é um jogo de controle de territórios onde 2 a 4 jogadores competem pelo domínio de 6 reinos fantásticos formando **bandos** de tribos. Um bando é um grupo de cartas da mesma tribo **ou** do mesmo reino. Ao jogar um bando, o jogador coloca marcadores nos reinos correspondentes — quem tiver mais marcadores ao fim de cada Era pontua.
 
-## React Compiler
+O jogo é disputado em **3 Eras**. Ao fim da terceira, quem acumular mais pontos vence.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Reinos
 
-## Expanding the ESLint configuration
+| Reino | Ícone |
+|---|---|
+| Homeland | 🏔️ |
+| Underglen | 🌲 |
+| Rivermeet | 🌊 |
+| Thornwood | 🌋 |
+| Skyfell | ☁️ |
+| Shadowmoor | 🌑 |
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Tribos
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+`dwarf` · `elf` · `halfling` · `merfolk` · `minotaur` · `orc` · `skeleton` · `troll` · `wingfolk` · `wizard`
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- **React 19** + **TypeScript**
+- **Tailwind CSS v4** (via `@tailwindcss/vite`)
+- **Vite 8**
+- Estado 100% no frontend (`useState`) — sem backend, sem WebSocket
+
+## Estrutura
+
+```
+src/
+├── types.ts              # Tipos e interfaces do estado do jogo
+├── gameLogic.ts          # Lógica: deck, embaralhamento, validação de bando, pontuação
+├── App.tsx               # Roteamento entre telas (start → setup → game → score)
+└── components/
+    ├── StartScreen.tsx       # Tela inicial
+    ├── SetupScreen.tsx       # Configuração de jogadores (2–4)
+    ├── GameScreen.tsx        # Tela principal de jogo
+    ├── PlayerHUD.tsx         # HUD superior: era, jogadores, pontos, deck
+    ├── KingdomBoard.tsx      # Tabuleiro dos 6 reinos com marcadores
+    ├── TribeCard.tsx         # Componente de carta (selecionável)
+    ├── PlayerHandPanel.tsx   # Mão do jogador + ações
+    └── ScoreScreen.tsx       # Placar final com ranking
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Como Jogar (demo)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. Clique em **Iniciar Partida**
+2. Escolha o número de jogadores (2–4) e os nomes
+3. Em cada turno, o jogador atual pode:
+   - **Comprar Carta** — retira uma carta do deck para a mão
+   - **Jogar Bando** — seleciona cartas da mão (mesma tribo ou mesmo reino) e as joga, adicionando marcadores nos reinos correspondentes
+   - **Avançar Era** — encerra a Era atual, calcula pontos e inicia a próxima
+4. Após 3 Eras, o placar final é exibido
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Instalação
+
+```bash
+npm install
+npm run dev
 ```
+
+Acesse `http://localhost:5173`.
+
+## Build
+
+```bash
+npm run build
+```
+
+## Estimativas do Projeto
+
+| Métrica | Valor |
+|---|---|
+| Story Points totais | 49 SP |
+| Esforço estimado | ~196h |
+| Custo estimado | R$ 6.762 (com contingência 15%) |
+| Função Pontos (APF) | 39 PF ajustados |
+| Duração | 2 meses / 4 sprints |
