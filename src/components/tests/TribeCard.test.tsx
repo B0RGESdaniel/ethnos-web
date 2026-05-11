@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import { TribeCard } from './TribeCard';
-import type { TribeCard as TribeCardType } from '../types';
+import { TribeCard } from '../TribeCard';
+import type { TribeCard as TribeCardType } from '../../types';
+import { describe, test, expect } from 'vitest';
 
 describe('TribeCard', () => {
   const mockCard: TribeCardType = {
