@@ -25,7 +25,7 @@ describe('PlayerHUD', () => {
   });
 
   test('highlights current player', () => {
-    const { container } = render(<PlayerHUD players={players} currentPlayerIndex={0} era={1} deckCount={50} />);
+    render(<PlayerHUD players={players} currentPlayerIndex={0} era={1} deckCount={50} />);
 
     const aliceSection = screen.getByText(/alice/i).closest('div');
     expect(aliceSection?.className).toContain('ring');
