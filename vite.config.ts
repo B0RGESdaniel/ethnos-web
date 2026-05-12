@@ -10,5 +10,5 @@ export default defineConfig({
     setupFiles: ['./src/test-setup.ts'],
     include: ['src/**/*.test.ts', 'src/**/*.test.tsx'],
     exclude: ['src/**/*.pglite.test.ts'],
-  },
-})
+  },},)
+
