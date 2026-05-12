@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, test } from 'vitest';
 import { KingdomBoard } from '../KingdomBoard';
+import type { KingdomControl } from '../../types';
 
 describe('KingdomBoard', () => {
   const players = [
@@ -8,7 +9,7 @@ describe('KingdomBoard', () => {
     { id: 2, name: 'Bob', hand: [], score: 8, eraScores: [3, 5] },
   ];
 
-  const kingdoms = [
+  const kingdoms: KingdomControl[] = [
     {
       kingdom: 'Homeland' as const,
       markers: { 1: 3, 2: 2 },

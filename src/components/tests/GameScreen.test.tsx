@@ -1,7 +1,7 @@
-import { render, screen } from '@testing-library/react';
 import { describe, expect, test, vi } from 'vitest';
+import { render, screen } from '@testing-library/react';
 import { GameScreen } from '../GameScreen';
-import { buildDeck, createInitialState } from '../../gameLogic';
+import { buildDeck } from '../../gameLogic';
 
 describe('GameScreen', () => {
   test('renders game board with regions', () => {

@@ -33,7 +33,6 @@ describe('PlayerHandPanel', () => {
   });
 
   test('enables play button only when cards are selected', async () => {
-    const user = userEvent.setup();
     const { rerender } = render(
       <PlayerHandPanel
         player={player}
